@@ -1,6 +1,6 @@
 {
   "name": "brain-games-hexlet",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "bin/brain-games.js",
   "type": "module",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/velther/frontend-project-lvl1/issues"
   },
-  "homepage": "https://github.com/velther/frontend-project-lvl1#readme"
+  "homepage": "https://github.com/velther/frontend-project-lvl1#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
