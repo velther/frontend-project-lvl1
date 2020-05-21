@@ -4,3 +4,5 @@
 # Simple console games
 ## Even
 [![asciicast](https://asciinema.org/a/vlr8m31L55m7Nvn3NjMMNUAaB.svg)](https://asciinema.org/a/vlr8m31L55m7Nvn3NjMMNUAaB)
+## Calc
+[![asciicast](https://asciinema.org/a/GQ6d1jVLmcZ9nseOjiw9Pi4Ml.svg)](https://asciinema.org/a/GQ6d1jVLmcZ9nseOjiw9Pi4Ml)

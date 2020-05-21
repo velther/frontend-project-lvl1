@@ -1,37 +1,12 @@
-import { welcome, askName, askQuestion } from '../cli.js';
+import createGame from '../index.js';
+import { getRandomFromRange } from '../utils.js';
 
-const correctAnswersCountToWin = 3;
-
+const gameDescription = 'Answer "yes" if the number is even, otherwise answer "no".';
 const brainEven = () => {
-  const numberToCheck = Math.floor(Math.random() * 100) + 1;
-  const correctAnswer = numberToCheck % 2 ? 'no' : 'yes';
+  const question = getRandomFromRange(1, 100);
+  const correctAnswer = question % 2 ? 'no' : 'yes';
 
-  console.log(`Question: ${numberToCheck}`);
-  const userAnswer = askQuestion('Your answer:');
-  if (userAnswer === correctAnswer) {
-    console.log('Correct!');
-    return true;
-  }
-
-  console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
-  return false;
+  return { question, correctAnswer };
 };
 
-const gameRunner = () => {
-  welcome();
-  const name = askName();
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
-
-  let correctAnswersCount = 0;
-  while (correctAnswersCount < correctAnswersCountToWin) {
-    if (brainEven()) {
-      correctAnswersCount += 1;
-      console.log(`Congratulations, ${name}!`);
-    } else {
-      console.log(`Let's try again, ${name}!`);
-      return;
-    }
-  }
-};
-
-export default gameRunner;
+export default createGame(brainEven, gameDescription);
