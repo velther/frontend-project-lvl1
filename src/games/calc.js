@@ -1,7 +1,7 @@
-import createGame from '../index.js';
-import { getRandomFromRange } from '../utils.js';
+import runGame from '../index.js';
+import { getRandomFromRange, generateRounds } from '../utils.js';
+import { DEFAULT_ROUNDS_COUNT } from '../const.js';
 
-const gameDescription = 'What is the result of the expression?';
 const operations = {
   '+': (left, right) => left + right,
   '-': (left, right) => left - right,
@@ -9,15 +9,28 @@ const operations = {
 };
 const operationSigns = Object.keys(operations);
 
+const calc = (operationSign, leftTerm, rightTerm) => {
+  const operation = operations[operationSign];
+  if (!operation) {
+    throw new Error('Unsupportable operation');
+  }
+
+  return operation(leftTerm, rightTerm);
+};
+
+const gameDescription = 'What is the result of the expression?';
 const brainCalc = () => {
   const leftTerm = getRandomFromRange(1, 100);
   const rightTerm = getRandomFromRange(1, 100);
 
   const operationSign = operationSigns[getRandomFromRange(0, operationSigns.length - 1)];
   const question = `${leftTerm} ${operationSign} ${rightTerm}`;
-  const correctAnswer = operations[operationSign](leftTerm, rightTerm);
+  const correctAnswer = calc(operationSign, leftTerm, rightTerm);
 
   return { question, correctAnswer };
 };
 
-export default createGame(brainCalc, gameDescription);
+
+export default () => {
+  runGame(generateRounds(DEFAULT_ROUNDS_COUNT, brainCalc), gameDescription);
+};

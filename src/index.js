@@ -1,21 +1,16 @@
 import { welcome, askName, askQuestion } from './cli.js';
 
-const roundsCount = 3;
-
-const createGame = (game, description) => () => {
+const runGame = (rounds, description) => {
   welcome();
   const name = askName();
   console.log(description);
 
-  let correctAnswersCount = 0;
-  while (correctAnswersCount < roundsCount) {
-    const { question, correctAnswer } = game();
-
+  // eslint-disable-next-line no-restricted-syntax
+  for (const { question, correctAnswer } of rounds) {
     console.log(`Question: ${question}`);
     const userAnswer = askQuestion('Your answer:');
 
     if (userAnswer === String(correctAnswer)) {
-      correctAnswersCount += 1;
       console.log('Correct!');
     } else {
       console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
@@ -27,4 +22,4 @@ const createGame = (game, description) => () => {
   console.log(`Congratulations, ${name}!`);
 };
 
-export default createGame;
+export default runGame;
