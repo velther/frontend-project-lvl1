@@ -1,4 +1,4 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/be3285ff2ecc61e81b62/maintainability)](https://codeclimate.com/github/velther/frontend-project-lvl1/maintainability)
 ![](https://github.com/velther/frontend-project-lvl1/workflows/Codestyle/badge.svg)
 
 # Simple console games
