@@ -2,12 +2,12 @@ import runGame from '../index.js';
 import { getRandomFromRange, generateRounds } from '../utils.js';
 import { DEFAULT_ROUNDS_COUNT } from '../const.js';
 
-const getProgression = (length, step) => {
-  const progression = [];
-  const start = getRandomFromRange(1, 100);
-  progression.push(start);
+const PROGRESSION_SIZE = 10;
 
-  for (let i = 1; i < length; i += 1) {
+const getProgression = (start, length, step) => {
+  const progression = [];
+
+  for (let i = 0; i < length; i += 1) {
     progression.push(start + i * step);
   }
 
@@ -15,15 +15,21 @@ const getProgression = (length, step) => {
 };
 
 const gameDescription = 'What number is missing in the progression?';
-const brainProgression = () => {
-  const progression = getProgression(10, getRandomFromRange(1, 7));
+const makeRound = () => {
+  const progressionStart = getRandomFromRange(1, 100);
+  const progressionStep = getRandomFromRange(1, 7);
+  const progression = getProgression(
+    progressionStart,
+    PROGRESSION_SIZE,
+    progressionStep,
+  );
   const hiddenItemIndex = getRandomFromRange(0, progression.length - 1);
-  const correctAnswer = progression[hiddenItemIndex];
+  const correctAnswer = String(progression[hiddenItemIndex]);
   progression[hiddenItemIndex] = '..';
 
   return { question: progression.join(' '), correctAnswer };
 };
 
 export default () => {
-  runGame(generateRounds(DEFAULT_ROUNDS_COUNT, brainProgression), gameDescription);
+  runGame(generateRounds(DEFAULT_ROUNDS_COUNT, makeRound), gameDescription);
 };

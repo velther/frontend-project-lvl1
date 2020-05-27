@@ -1,16 +1,17 @@
-import { welcome, askName, askQuestion } from './cli.js';
+import readlineSync from 'readline-sync';
 
 const runGame = (rounds, description) => {
-  welcome();
-  const name = askName();
+  console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name?');
+  console.log(`Hello, ${name}!`);
   console.log(description);
 
   // eslint-disable-next-line no-restricted-syntax
   for (const { question, correctAnswer } of rounds) {
     console.log(`Question: ${question}`);
-    const userAnswer = askQuestion('Your answer:');
+    const userAnswer = readlineSync.question('Your answer:').trim();
 
-    if (userAnswer === String(correctAnswer)) {
+    if (userAnswer === correctAnswer) {
       console.log('Correct!');
     } else {
       console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);

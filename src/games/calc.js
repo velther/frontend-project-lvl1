@@ -12,25 +12,25 @@ const operationSigns = Object.keys(operations);
 const calc = (operationSign, leftTerm, rightTerm) => {
   const operation = operations[operationSign];
   if (!operation) {
-    throw new Error('Unsupportable operation');
+    throw new Error('Unsupported operation');
   }
 
   return operation(leftTerm, rightTerm);
 };
 
 const gameDescription = 'What is the result of the expression?';
-const brainCalc = () => {
+const makeRound = () => {
   const leftTerm = getRandomFromRange(1, 100);
   const rightTerm = getRandomFromRange(1, 100);
 
   const operationSign = operationSigns[getRandomFromRange(0, operationSigns.length - 1)];
   const question = `${leftTerm} ${operationSign} ${rightTerm}`;
-  const correctAnswer = calc(operationSign, leftTerm, rightTerm);
+  const correctAnswer = String(calc(operationSign, leftTerm, rightTerm));
 
   return { question, correctAnswer };
 };
 
 
 export default () => {
-  runGame(generateRounds(DEFAULT_ROUNDS_COUNT, brainCalc), gameDescription);
+  runGame(generateRounds(DEFAULT_ROUNDS_COUNT, makeRound), gameDescription);
 };
